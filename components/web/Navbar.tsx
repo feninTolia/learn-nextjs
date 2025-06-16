@@ -1,8 +1,9 @@
+import 'server-only';
 import Link from 'next/link';
-import { Button } from '@/components/ui/button';
 import { ModeToggle } from '@/components/ui/theme-toggle';
+import ProfileMenu from '@/components/web/ProfileMenu';
 
-const Navbar = () => {
+const Navbar = async () => {
   return (
     <nav className="py-5 flex items-center justify-between max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="flex items-center gap-6">
@@ -29,8 +30,7 @@ const Navbar = () => {
       </div>
 
       <div className="flex items-center gap-4">
-        <Button>Login</Button>
-        <Button variant="secondary">Sign Up</Button>
+        <ProfileMenu />
         <ModeToggle />
       </div>
     </nav>
