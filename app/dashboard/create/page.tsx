@@ -1,3 +1,4 @@
+import { handleCreatePostSubmit } from '@/app/actions';
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -20,20 +21,37 @@ const CreateBlogPage = () => {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <form className="flex flex-col gap-4">
+        <form className="flex flex-col gap-4" action={handleCreatePostSubmit}>
           <div className="flex flex-col gap-2 ">
             <Label htmlFor="title">Title</Label>
-            <Input id="title" placeholder="Title" required type="text" />
+            <Input
+              id="title"
+              name="title"
+              placeholder="Title"
+              required
+              type="text"
+            />
           </div>
 
           <div className="flex flex-col gap-2">
             <Label htmlFor="content">Content</Label>
-            <Textarea id="content" required placeholder="Content" />
+            <Textarea
+              name="content"
+              id="content"
+              required
+              placeholder="Content"
+            />
           </div>
 
           <div className="flex flex-col gap-2">
             <Label htmlFor="imageUrl">Image URL</Label>
-            <Input id="imageUrl" required placeholder="Image URL" type="url" />
+            <Input
+              name="imageUrl"
+              id="imageUrl"
+              required
+              placeholder="Image URL"
+              type="url"
+            />
           </div>
 
           <Button type="submit" className="my-8">

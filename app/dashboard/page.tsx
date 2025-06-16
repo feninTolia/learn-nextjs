@@ -1,7 +1,24 @@
 import { buttonVariants } from '@/components/ui/button';
+import { prisma } from '@/lib/db';
+import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server';
 import Link from 'next/link';
 
+const getPostsByUserId = async (userId: string) => {
+  console.log('userId ===', userId);
+
+  return await prisma.blogPost.findMany({
+    where: { authorId: userId },
+    orderBy: { createdAt: 'desc' },
+  });
+};
+
 const Dashboard = async () => {
+  const { getUser } = getKindeServerSession();
+  const user = await getUser();
+
+  const data = await getPostsByUserId(user?.id ?? '');
+  console.log('data ---', data);
+
   return (
     <div>
       <div className="flex items-center justify-between mb-4">
@@ -11,6 +28,14 @@ const Dashboard = async () => {
       <Link href={'/dashboard/create'} className={buttonVariants()}>
         Create Post
       </Link>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 ">
+        {data.map((post) => (
+          <div key={post.id}>
+            <h1>{post.title}</h1>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
