@@ -28,10 +28,10 @@ const BlogPostCard = ({ data }: Props) => {
           />
         </div>
 
-        <div className="p-4">
+        <div className="p-4 flex flex-col justify-between">
           <h3 className="mb-2 text-lg font-semibold ">{data.title}</h3>
 
-          <p className="mb-4 text-sm line-clamp-2 text-muted-foreground">
+          <p className="mb-4 h-max text-sm line-clamp-2 text-muted-foreground">
             {data.content}
           </p>
 

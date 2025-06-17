@@ -1,5 +1,4 @@
 import { handleCreatePostSubmit } from '@/app/actions';
-import { Button } from '@/components/ui/button';
 import {
   Card,
   CardContent,
@@ -10,6 +9,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
+import SubmitButton from '@/components/web/SubmitButton';
 
 const CreateBlogPage = () => {
   return (
@@ -54,9 +54,9 @@ const CreateBlogPage = () => {
             />
           </div>
 
-          <Button type="submit" className="my-8">
+          <SubmitButton type="submit" className="my-8">
             Create Post
-          </Button>
+          </SubmitButton>
         </form>
       </CardContent>
     </Card>

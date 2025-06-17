@@ -5,7 +5,9 @@ import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server';
 import Link from 'next/link';
 
 const getPostsByUserId = async (userId: string) => {
-  console.log('userId ===', userId);
+  await new Promise((resolve) => {
+    setTimeout(resolve, 1500);
+  });
 
   return await prisma.blogPost.findMany({
     where: { authorId: userId },
@@ -29,8 +31,7 @@ const Dashboard = async () => {
       <Link href={'/dashboard/create'} className={buttonVariants()}>
         Create Post
       </Link>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 ">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4 ">
         {data.map((post) => (
           <BlogPostCard key={post.id} data={post} />
         ))}
