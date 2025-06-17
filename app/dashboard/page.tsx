@@ -1,4 +1,5 @@
 import { buttonVariants } from '@/components/ui/button';
+import BlogPostCard from '@/components/web/BlogPostCard';
 import { prisma } from '@/lib/db';
 import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server';
 import Link from 'next/link';
@@ -31,9 +32,7 @@ const Dashboard = async () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 ">
         {data.map((post) => (
-          <div key={post.id}>
-            <h1>{post.title}</h1>
-          </div>
+          <BlogPostCard key={post.id} data={post} />
         ))}
       </div>
     </div>

@@ -1,4 +1,4 @@
-import { Card } from '@/components/ui/card';
+import BlogPostCard from '@/components/web/BlogPostCard';
 import { prisma } from '@/lib/db';
 
 async function getPosts() {
@@ -9,8 +9,10 @@ async function getPosts() {
       imageUrl: true,
       authorImage: true,
       authorName: true,
+      authorId: true,
       id: true,
       createdAt: true,
+      updatedAt: true,
     },
   });
 }
@@ -23,16 +25,7 @@ export default async function Home() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {posts.map((post) => (
-          <Card key={post.title} className="h-96 overflow-hidden">
-            <p>{post.title}</p>
-            <img
-              width={200}
-              height={300}
-              alt=""
-              src={post.imageUrl}
-              className="object-cover w-full"
-            />
-          </Card>
+          <BlogPostCard key={post.title} data={post} />
         ))}
       </div>
     </div>
