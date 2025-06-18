@@ -3,10 +3,9 @@ import BlogPostsSkeletons from '@/components/web/BlogPostsSkeletons';
 import { prisma } from '@/lib/db';
 import { Suspense } from 'react';
 
+export const revalidate = 7200;
+
 async function getPosts() {
-  await new Promise((resolve) => {
-    setTimeout(resolve, 1500);
-  });
   return await prisma.blogPost.findMany({
     select: {
       title: true,

@@ -5,10 +5,6 @@ import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server';
 import Link from 'next/link';
 
 const getPostsByUserId = async (userId: string) => {
-  await new Promise((resolve) => {
-    setTimeout(resolve, 1500);
-  });
-
   return await prisma.blogPost.findMany({
     where: { authorId: userId },
     orderBy: { createdAt: 'desc' },
@@ -20,7 +16,6 @@ const Dashboard = async () => {
   const user = await getUser();
 
   const data = await getPostsByUserId(user?.id ?? '');
-  console.log('data ---', data);
 
   return (
     <div>
